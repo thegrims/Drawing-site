@@ -19,25 +19,66 @@
 
     <!-- Literally Canvas -->
     <script src="bower_components/literallycanvas/js/literallycanvas.js"></script>
-      
+    
     </head> 
     <body>
         <!-- where the widget goes. you can do CSS to it. -->
-    <div class="container-fluid">
-    <div class="literally"></div>
-    </div>
+    <div class="container">
+    <div class="literally backgrounds"></div>
+    <button type="button" class="btn btn-primary" onClick="">Download Drawing</button>
+    <form class="imgur-submit">
+        <input type="submit" data-action="upload-to-imgur" value="Upload to Imgur">
+    </form>
 
+    </div>
     <!-- kick it off -->
     <script>
-        // Look ma, no jQuery!
-        LC.init(
-            document.getElementsByClassName('literally')[0],
-            {imageURLPrefix: 'bower_components/literallycanvas/img'}
-        );
+        $(document).ready(function() {
+        var newImage = new Image()
+        newImage.src = 'img/red-green-christmas-sweater.png';
+         var lc = LC.init(
+            document.getElementsByClassName('literally backgrounds')[0],{imageURLPrefix: 'bower_components/literallycanvas/img'})
+         
+            $('[data-action=upload-to-imgur]').click(function(e) {
+              e.preventDefault();
 
-        /* or if you just love jQuery,
-            $('.literally').literallycanvas({imageURLPrefix: '/static/img'})
-        */
-    </script>
+              $('.imgur-submit').html('Uploading...')
+
+              // this is all standard Imgur API; only LC-specific thing is the image
+              // data argument;
+              $.ajax({
+                url: 'https://api.imgur.com/3/image',
+                type: 'POST',
+                headers: {
+                  // Your application gets an imgurClientId from Imgur
+                  Authorization: 'Client-ID ' + imgurClientId,
+                  Accept: 'application/json'
+                },
+                data: {
+                  // convert the image data to base64
+                  image:  lc.canvasForExport().toDataURL().split(',')[1],
+                  type: 'base64'
+                },
+                success: function(result) {
+                  var url = 'https://imgur.com/gallery/' + result.data.id;
+                  $('.imgur-submit').html("<a href='" + url + "'>" + url + "</a>");
+                },
+              });
+            });
+            
+    lc.saveShape(LC.createShape('Image', {x: 0, y: 0, image: newImage, scale: .7}));
+            
+    // the background image is not included in the shape list that is
+    // saved/loaded here
+  /*
+    var localStorageKey = 'drawing-with-background'
+    if (localStorage.getItem(localStorageKey)) {
+      lc.loadSnapshotJSON(localStorage.getItem(localStorageKey));
+    }
+    lc.on('drawingChange', function() {
+      localStorage.setItem(localStorageKey, lc.getSnapshotJSON());
+    });*/
+  });
+    </script>  
     </body>
 </html>
