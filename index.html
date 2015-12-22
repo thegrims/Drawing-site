@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      
+    <link href="bootstrap-3.3.5-dist/css/bootstrap.min.css" rele="stylesheet"
+          
+    <link rel="stylesheet" href="css/normalize.css"> <!-- not really a link, more like a #include-->
+      
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+            
+    <link rel="stylesheet" href="css/main.css">
+      
+    <script src="Chart.js-master/src/Chart.Core.js"></script>
+      
+    <script src="Chart.js-master/src/Chart.Doughnut.js"></script>
+      
+      <script>
+
+      function addStuff()
+      {
+        var miles = $("#miles").val(); /* gets variable someimput from html */
+        var gasMilage = $("#gas").val(); /* gets variable someimput from html */
+        var insuranceCost = $("#gas").val(); /* gets variable someimput from html */
+        console.log(miles/gasMilage);  
+        
+          document.getElementById("totalCost").innerHTML =miles/gasMilage;
+          myDoughnut.segments[0].value = miles/gasMilage;
+          // Would update the first dataset's value of 'March' to be 50
+          myDoughnut.update();
+          // Calling update now animates the position of March from 90 to 50.
+      }
+          
+      </script>
+      
+  </head>
+    <body>
+        
+        
+        <nav class="navbar navbar - inverse navbar - fixed - top" id="mynavbar">
+            <div class= container
+        </nav>
+        
+        
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <input class="form-control input" type="number" placeholder="miles driven" id="miles">
+        
+                    <input class="form-control input" type="number" placeholder="mpg" id="gas">
+                    
+                    <input class="form-control input" type="number" placeholder="insurance total cost" id="insuranceCost">
+                </div><!-- /input-group -->
+            </div><!-- /.col-lg-6 -->
+        </div><!-- /.row -->
+        
+        <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+        <button type="button" class="btn btn-primary" onClick="addStuff()">Add</button>
+        
+        <!-- Indicates a successful or positive action -->
+        <button type="button" class="btn btn-primary">Subtract</button>
+        
+        <!-- Contextual button for informational alert messages -->
+        <button type="button" class="btn btn-primary">Multiply</button>
+            <!-- id allows us to access it in javascript section-->
+        <h1>your total cost is:</h1> <h1 id="totalCost"></h1>
+        
+            
+            
+        <div class="canvas-holder"><canvas id="canvas" width="100" height="100"></canvas></div>
+      
+        
+        <script>
+        
+        var doughnutData = [
+				{
+					value: 28.5,
+					label: "Trump"
+				},
+				{
+					value: 18.8,
+					label: "Carson"
+				},
+				{
+					value: 7.8,
+					label: "Bush",
+                    color: "#008A2E"
+				},
+				{
+					value: 7.3,
+					label: "Rubio",
+                    color: "#46BFBD"
+				},
+				{
+					value: 6.5,
+					label: "Cruz",
+                    color:"#F7464A"
+				}
+
+			];
+            
+            
+
+			window.onload = function(){
+				var ctx = document.getElementById("canvas").getContext("2d");
+				window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {responsive : true});
+			};
+        myDoughnut.resize();
+        </script>
+
+    </body>
+</html>
