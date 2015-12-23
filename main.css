@@ -1,0 +1,50 @@
+body {
+  padding-bottom: 40px;
+  background-image: url(img/stripes.png);
+  /*color: #5a5a5a;
+  background-color: aqua;*/
+  /*background-image: url(img/nature-sky-sunset-man.jpeg)*/
+}
+.canvas-holder
+{
+    width: 409px;
+    height: 204px;
+}
+.form-control
+{
+    border-bottom-width: thick;
+    margin-top: 10px;
+    padding-bottom: 0px;
+}
+.btn-primary
+{
+    margin-top: 10px
+}
+.container
+{
+    background-color:floralwhite; 
+    /*background-size: cover;
+    width: 100vw;
+    margin:auto;
+    padding-bottom: 5%;
+    padding-top: 15%;
+    min-height: inherit;
+    color: floralwhite;
+    text-align: center;
+    margin-right: -15px;
+    margin-left: -15px;*/
+    padding-top: 1%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    height: 550px;
+    text-align: center;
+}
+.button-container form,
+.button-container form div {
+    display: inline;
+}
+
+.button-container button {
+    display: inline;
+    vertical-align: middle;
+}

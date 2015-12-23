@@ -12,7 +12,7 @@
     <!-- stylesheet -->
     <link href="bower_components/literallycanvas/css/literallycanvas.css" rel="stylesheet">
       
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="main.css">
 
     <!-- dependency: React.js -->
     <script src="bower_components/react/react-with-addons.js"></script>
@@ -24,16 +24,22 @@
     <body>
         <!-- where the widget goes. you can do CSS to it. -->
     <div class="container">
-    <div class="literally backgrounds"></div>
-    <button type="button" class="btn btn-primary" onClick="">Download Drawing</button>
-    <form class="imgur-submit">
-        <input type="submit" data-action="upload-to-imgur" value="Upload to Imgur">
-    </form>
-
+        <div class="literally backgrounds"></div>
+        
+        <hr class="featurette-divider">
+        
+        <div class="button-container"> 
+            <form class="controls export">
+                <button type="submit" data-action="export-as-png" class="btn btn-default">Export as PNG</button>
+            </form>
+            <form class="imgur-submit">
+                <button type="submit" data-action="upload-to-imgur" class="btn btn-default">Upload to Imgur</button>
+            </form>
+        </div>
     </div>
     <!-- kick it off -->
     <script>
-        $(document).ready(function() {
+        $(document).ready(function(){
         var newImage = new Image()
         newImage.src = 'img/red-green-christmas-sweater.png';
          var lc = LC.init(
@@ -51,7 +57,7 @@
                 type: 'POST',
                 headers: {
                   // Your application gets an imgurClientId from Imgur
-                  Authorization: 'Client-ID ' + imgurClientId,
+                  Authorization: 'Client-ID ' + '0da8c86e81c0244',
                   Accept: 'application/json'
                 },
                 data: {
@@ -66,19 +72,24 @@
               });
             });
             
-    lc.saveShape(LC.createShape('Image', {x: 0, y: 0, image: newImage, scale: .7}));
+            $('.controls.export [data-action=export-as-png]').click(function(e) {
+              e.preventDefault();
+              window.open(lc.getImage().toDataURL());
+            });
             
-    // the background image is not included in the shape list that is
-    // saved/loaded here
-  /*
-    var localStorageKey = 'drawing-with-background'
-    if (localStorage.getItem(localStorageKey)) {
-      lc.loadSnapshotJSON(localStorage.getItem(localStorageKey));
-    }
-    lc.on('drawingChange', function() {
-      localStorage.setItem(localStorageKey, lc.getSnapshotJSON());
-    });*/
-  });
+            lc.saveShape(LC.createShape('Image', {x: 0, y: 0, image: newImage, scale: .7}));
+
+            // the background image is not included in the shape list that is
+            // saved/loaded here
+          /*
+            var localStorageKey = 'drawing-with-background'
+            if (localStorage.getItem(localStorageKey)) {
+              lc.loadSnapshotJSON(localStorage.getItem(localStorageKey));
+            }
+            lc.on('drawingChange', function() {
+              localStorage.setItem(localStorageKey, lc.getSnapshotJSON());
+            });*/
+    });
     </script>  
     </body>
 </html>
