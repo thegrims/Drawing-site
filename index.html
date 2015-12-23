@@ -12,7 +12,7 @@
     <!-- stylesheet -->
     <link href="bower_components/literallycanvas/css/literallycanvas.css" rel="stylesheet">
       
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="main.css">
 
     <!-- dependency: React.js -->
     <script src="bower_components/react/react-with-addons.js"></script>
@@ -28,10 +28,9 @@
         
         <hr class="featurette-divider">
         
-        <div class="btn-group inline pull-left" data-toggle="buttons-checkbox"> 
-            <button type="button" class="btn btn-primary" onClick="">Download Drawing</button>
+        <div class="button-container"> 
             <form class="controls export">
-              <input type="submit" data-action="export-as-png" value="Export as PNG">
+                <button type="submit" data-action="export-as-png" class="btn btn-default">Export as PNG</button>
             </form>
             <form class="imgur-submit">
                 <button type="submit" data-action="upload-to-imgur" class="btn btn-default">Upload to Imgur</button>
