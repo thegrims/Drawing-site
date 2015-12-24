@@ -20,9 +20,17 @@ body {
 {
     margin-top: 10px
 }
+@font-face {
+   font-family: myFirstFont;
+   src: url(santasairmail.ttf);
+}
+.title
+{
+    font-family: myFirstFont;
+}
 .container
 {
-    background-color:floralwhite; 
+    background-color:floralwhite;
     /*background-size: cover;
     width: 100vw;
     margin:auto;
@@ -33,11 +41,14 @@ body {
     text-align: center;
     margin-right: -15px;
     margin-left: -15px;*/
-    padding-top: 1%;
-    margin-top: 2%;
+    margin-top: 1%;
     margin-bottom: 2%;
-    height: 550px;
+    height: 600px;
     text-align: center;
+}
+.literally backgrounds
+{
+    margin-top: 10%;
 }
 .button-container form,
 .button-container form div {
@@ -48,3 +59,5 @@ body {
     display: inline;
     vertical-align: middle;
 }
+
+
