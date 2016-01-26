@@ -20,7 +20,7 @@
 
     <!-- Literally Canvas -->
     <script src="bower_components/literallycanvas/js/literallycanvas.js"></script>
-    
+      
     </head> 
     <body>
         <!-- where the widget goes. you can do CSS to it. -->
@@ -91,8 +91,11 @@
 
               // this is all standard Imgur API; only LC-specific thing is the image
               // data argument;
+    
               $.ajax({
                 url: 'https://api.imgur.com/3/image',
+                album: 'LwnWH',
+                title: 'I love ugly sweaters',
                 type: 'POST',
                 headers: {
                   // Your application gets an imgurClientId from Imgur
@@ -110,7 +113,7 @@
                 },
               });
             });
-            
+    
             $('.controls.export [data-action=export-as-png]').click(function(e) {
               e.preventDefault();
               window.open(lc.getImage().toDataURL());
