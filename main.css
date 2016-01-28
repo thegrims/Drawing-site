@@ -10,11 +10,16 @@ body {
     width: 409px;
     height: 204px;
 }
+.input
+{
+    padding-bottom: 10px;
+    padding-top: 0px;
+}
 .form-control
 {
-    border-bottom-width: thick;
-    margin-top: 10px;
-    padding-bottom: 0px;
+    border-bottom-width: thin;
+    margin-top: 0px;
+    
 }
 .btn-primary
 {

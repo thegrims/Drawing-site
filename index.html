@@ -29,8 +29,10 @@
         <div class="literally backgrounds"></div>
         
         <hr class="featurette-divider">
-        
-        <div class="button-container"> 
+        <div class="input">     
+        <input class="form-control input-sm" type="text" maxlength="50" class="form-control" id="title"  placeholder="Name Your Creation!" required>
+        </div>
+        <div class="button-container">         
             <form class="controls export">
                 <button type="submit" data-action="export-as-png" class="btn btn-default">Export as PNG</button>
             </form>
@@ -94,8 +96,6 @@
     
               $.ajax({
                 url: 'https://api.imgur.com/3/image',
-                album: 'LwnWH',
-                title: 'I love ugly sweaters',
                 type: 'POST',
                 headers: {
                   // Your application gets an imgurClientId from Imgur
@@ -105,13 +105,31 @@
                 data: {
                   // convert the image data to base64
                   image:  lc.canvasForExport().toDataURL().split(',')[1],
-                  type: 'base64'
+                  /*album: 'LwnWH',*/
+                  type: 'base64',
+                  title: $("#title").val(),
+                  description: 'Lovingly crafted with http://uglysweaters.work'
                 },
                 success: function(result) {
                   var url = 'https://imgur.com/gallery/' + result.data.id;
+                  var imageId = result.data.id;
                   $('.imgur-submit').html("<a href='" + url + "'>" + url + "</a>");
                 },
               });
+             /*
+              $.ajax({
+                 url: 'https://api.imgur.com/3/album/{LwnWH}/add',
+                 type: 'PUT',
+                 headers: {
+                  // Your application gets an imgurClientId from Imgur
+                  Authorization: 'Client-ID ' + '0da8c86e81c0244',
+                  Accept: 'application/json'
+                 },
+                 data: {imageID
+                  
+                },
+              });
+              */
             });
     
             $('.controls.export [data-action=export-as-png]').click(function(e) {
