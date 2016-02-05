@@ -4,17 +4,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="img/red-green-christmas-sweater.png" type="image/png">
       
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rele="stylesheet"
+    <!--<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rele="stylesheet"
           
-    <link rel="stylesheet" href="css/normalize.css"> <!-- not really a link, more like a #include-->
+    <link rel="stylesheet" href="css/normalize.css">  not really a link, more like a #include-->
       
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
       
     <!-- stylesheet -->
+      <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="bower_components/literallycanvas/css/literallycanvas.css" rel="stylesheet">
       
     <link rel="stylesheet" href="main.css">
-
+      
     <!-- dependency: React.js -->
     <script src="bower_components/react/react-with-addons.js"></script>
 
@@ -80,6 +81,10 @@
     </script>
     <!-- kick it off -->
     <script>
+        function home(){
+            window.location.href = "thanks.html";
+        }
+        
         $(document).ready(function(){
         var newImage = new Image()
         newImage.src = 'img/red-green-christmas-sweater.png';
@@ -112,8 +117,10 @@
                 },
                 success: function(result) {
                   var url = 'https://imgur.com/gallery/' + result.data.id;
+                  sessionStorage.url = url;
                   var imageId = result.data.id;
-                  $('.imgur-submit').html("<a href='" + url + "'>" + url + "</a>");
+                  home();
+                  //$('.imgur-submit').html("<a href='" + url + "'>" + url + "</a>");
                 },
               });
              /*
