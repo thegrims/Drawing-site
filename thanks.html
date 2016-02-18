@@ -14,10 +14,12 @@
   <body>
     <div class="container">
         <div class="title"><h2>THANKS FOR VISITING</h2></div>
-        <div class="imgur-submit"></div>
-        <a href="#" class="btn btn-danger" role="button">Link Button</a>
+         <!--<div class="imgur-submit"></div>-->
+        <div class="button-container"><a href="#" onclick="home()" class="btn btn-danger" role="button">Your Sweater is here</a></div>
+        
+        
       <!--dogecoin donate button-->
-        <script src="http://www.dogets.com/widget/dogets.js"></script>
+        <div><script src="http://www.dogets.com/widget/dogets.js"></script>
         <script>
         DogetsCom.go({
          wallet_address: "DL6ofb3jtaUfVLzx7gL7GmnAuGkZ5h9qVq",
@@ -30,12 +32,19 @@
          lbl_address: "Donate Dogecoin to this Address:",
          lbl_count: "donations",
          lbl_amount: "DOGE"});
-        </script>
+        </script></div>
+        
     </div>
      <script>
+         function home(){
          var url = sessionStorage.url;
          console.log(url);
-         $('.imgur-submit').html("<a href='" + url + "'>" + url + "</a>");
+         //$('.imgur-submit').html("<a href='" + url + ""class="btn btn-danger'" role="button"">" + url + "</a>");
+         //document.write('<a href="' + url + '">Link text</a>');
+             console.log("hi yall")
+         
+            window.location.href = ''+url;
+         }
          //$('.imgur-submit').replaceWith(url);
      </script>
       <!-- google analytics tracking code -->
